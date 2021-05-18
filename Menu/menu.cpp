@@ -43,7 +43,8 @@ void testingMenu()
             system("cls");
             cout << "Enter the starting vertex: ";
             cin >> vert;
-            dijkstraAlgo(graph, vert);
+            dijkstraAlgoList(graph, vert);
+            dijkstraAlgoMatrix(graph, vert);
             break;
         case '5':
             system("cls");
