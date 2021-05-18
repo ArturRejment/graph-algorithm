@@ -59,7 +59,7 @@ int Graph::getStartingVertex(int edge)
 
     for (int i = 0; i < n; i++)
     {
-        if (matrix[i][edge] < 0)
+        if (matrix[i][edge] > 0)
         {
             return i;
         }
