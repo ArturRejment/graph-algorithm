@@ -15,13 +15,16 @@ private:
 
 public:
     // Getters
-    int getVertices();       // Returns number of vertices
-    int getEdges();          // Returns number of edges
-    int **getMatrix();       // Returns incidence matrix
-    ListElement **getList(); // Returns neighbour list
+    int getVertices();          // Returns number of vertices
+    int getEdges();             // Returns number of edges
+    int getStartingVertex(int); // Returns staring vertex of edge
+    int getEndingVertex(int);   // Returns ending vertex of edge
+    int **getMatrix();          // Returns incidence matrix
+    ListElement **getList();    // Returns neighbour list
 
     // Others
     Graph();                    // Creates an epty graph
+    ~Graph();                   // Deletes and graph
     void printMatrix();         // Prints incidence matrix of the graph
     void printList();           // Prints heighbour list of the graph
     void printGraph();          // Prints both list and matrix

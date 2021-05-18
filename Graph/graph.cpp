@@ -12,6 +12,26 @@ Graph::Graph()
     this->list = nullptr;
 }
 
+Graph::~Graph()
+{
+    int i;
+    ListElement *temp, *temp2;
+    for (i = 0; i < n; i++)
+    {
+        delete[] matrix[i];
+
+        temp2 = list[i];
+        while (temp2)
+        {
+            temp = temp2;
+            temp2 = temp2->next;
+            delete temp;
+        }
+    }
+    delete[] matrix;
+    delete[] list;
+}
+
 int Graph::getVertices()
 {
     return n;
@@ -30,6 +50,37 @@ int **Graph::getMatrix()
 ListElement **Graph::getList()
 {
     return list;
+}
+
+int Graph::getStartingVertex(int edge)
+{
+    if (edge > m - 1)
+        return -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (matrix[i][edge] < 0)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int Graph::getEndingVertex(int edge)
+{
+    if (edge > m - 1)
+        return -1;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (matrix[i][edge] < 0)
+        {
+            return i;
+        }
+    }
+    return -1;
 }
 
 void Graph::printMatrix()
@@ -126,4 +177,6 @@ void Graph::importGraphFromFile()
         list[vert1] = temp;
     }
     cout << "Structure filled with success!\n";
+
+    file.close();
 }
