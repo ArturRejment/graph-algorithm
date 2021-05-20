@@ -45,8 +45,6 @@ void DisjointSet::unionSets(Edge edge)
     }
 }
 
-//TODO: Kruskal algorithm
-
 MST::MST(int n)
 {
     int i;
