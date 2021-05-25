@@ -19,26 +19,3 @@ public:
     void unionSets(Edge);     // Unions sets with v and u
     bool isAllOneSet();       // Checks if all verices belongs to one set
 };
-
-// Definition of MST
-struct TreeNode
-{
-    TreeNode *next; // Next node
-    int vertex;     // Starting Vertex
-    int weight;     // Weight
-};
-
-class MST
-{
-private:
-    TreeNode **neighbourhoodList; // Neighbourhood list
-    int listSize;                 // Amount of units in the list
-    int weight;
-
-public:
-    MST(int n);
-    ~MST();
-    void addEdge(Edge);          // Add edge to the tree
-    void printMST();             // Print tree and its weight
-    TreeNode *getNeighList(int); // Returns pointer for beginning neighbourhood list
-};

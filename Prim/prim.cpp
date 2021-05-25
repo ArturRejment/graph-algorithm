@@ -5,11 +5,11 @@ void primAlgoMatrix(Graph *&graph)
     int m = graph->getEdges();
     int **matrix = graph->getMatrix();
     Edge edge;
-    TreeNode *node;
+    ListElement *node;
 
     Queue queue(m);
-    MST mst(n);
-    MST graph_s(n);
+    Graph mst;
+    Graph graph_s;
     bool *visited = new bool[n];
 
     for (i = 0; i < n; i++)
@@ -45,12 +45,10 @@ void primAlgoMatrix(Graph *&graph)
             queue.pop();
         } while (visited[edge.vert2]);
 
-        mst.addEdge(edge);
+        mst.addEdge(edge.vert1, edge.vert2, edge.weight);
         visited[edge.vert2] = true;
         vertex = edge.vert2;
     }
-
-    mst.printMST();
 }
 
 void primAlgoList(Graph *&graph)
@@ -60,12 +58,12 @@ void primAlgoList(Graph *&graph)
     int m = graph->getEdges();
     ListElement **neighbourhoodList = graph->getList();
     Edge edge;
-    TreeNode *node;
+    ListElement *node;
     ListElement *temp;
 
     Queue queue(m);
-    MST mst(n);
-    MST graph_s(n);
+    Graph mst;
+    Graph graph_s;
     bool *visited = new bool[n];
 
     for (i = 0; i < n; i++)
@@ -79,7 +77,7 @@ void primAlgoList(Graph *&graph)
             edge.vert1 = i;
             edge.vert2 = temp->vertex;
             edge.weight = temp->weight;
-            graph_s.addEdge(edge);
+            graph_s.addEdge(edge.vert1, edge.vert2, edge.vert2);
             temp = temp->next;
         }
     }
@@ -89,7 +87,7 @@ void primAlgoList(Graph *&graph)
 
     for (i = 1; i < n; i++)
     {
-        for (node = graph_s.getNeighList(vertex); node; node = node->next)
+        for (node = *graph_s.getList(); node; node = node->next)
         {
             if (!visited[node->vertex])
             {
@@ -107,11 +105,9 @@ void primAlgoList(Graph *&graph)
         } while (visited[edge.vert2]);
 
         cout << edge.vert1 << " " << edge.vert2 << " (" << edge.weight << ")\n";
-        mst.addEdge(edge);
+        mst.addEdge(edge.vert1, edge.vert2, edge.weight);
         visited[edge.vert2] = true;
         vertex = edge.vert2;
         cout << "vertex: " << vertex << endl;
     }
-
-    mst.printMST();
 }

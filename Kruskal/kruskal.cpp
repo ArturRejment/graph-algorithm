@@ -9,7 +9,7 @@ void kruskalAlgoMatrix(Graph *&graph)
 
     DisjointSet set(n); // Disjoint sets structure
     Queue queue(m);     // Priority queue
-    MST mst(n);
+    Graph mst;
 
     for (i = 0; i < n; i++)
         set.makeSet(i); // Make set for every vertex
@@ -35,11 +35,9 @@ void kruskalAlgoMatrix(Graph *&graph)
             edge = queue.front();
             queue.pop();
         } while (set.findSet(edge.vert1) == set.findSet(edge.vert2));
-        mst.addEdge(edge);
+        mst.addEdge(edge.vert1, edge.vert2, edge.weight);
         set.unionSets(edge);
     }
-
-    mst.printMST();
 }
 
 void kruskalAlgoList(Graph *&graph)
@@ -54,7 +52,7 @@ void kruskalAlgoList(Graph *&graph)
 
     DisjointSet set(n); // Disjoint sets structure
     Queue queue(m);     // Priority queue
-    MST mst(n);
+    Graph mst;
 
     for (i = 0; i < n; i++)
         set.makeSet(i); // Make set for every vertex
@@ -79,9 +77,7 @@ void kruskalAlgoList(Graph *&graph)
             edge = queue.front();
             queue.pop();
         } while (set.findSet(edge.vert1) == set.findSet(edge.vert2));
-        mst.addEdge(edge);
+        mst.addEdge(edge.vert1, edge.vert2, edge.vert2);
         set.unionSets(edge);
     }
-
-    mst.printMST();
 }

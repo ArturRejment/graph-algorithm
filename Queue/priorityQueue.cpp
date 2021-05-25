@@ -24,7 +24,7 @@ void Queue::push(Edge edge)
     j = (i - 1) >> 1;   // Calculate the position of parent
 
     // Find place in the heap for new edge
-    while(i && (heap[j].weight > edge.weight))
+    while (i && (heap[j].weight > edge.weight))
     {
         heap[i] = heap[j];
         i = j;
@@ -38,7 +38,7 @@ void Queue::pop()
     int i, j;
     Edge edge;
 
-    if(heapPosition)
+    if (heapPosition)
     {
         edge = heap[--heapPosition];
 
@@ -47,11 +47,11 @@ void Queue::pop()
 
         while (j < heapPosition)
         {
-            if((j+1 < heapPosition) && (heap[j+1].weight < heap[j].weight))
+            if ((j + 1 < heapPosition) && (heap[j + 1].weight < heap[j].weight))
             {
                 j++;
             }
-            if(edge.weight <= heap[j].weight)
+            if (edge.weight <= heap[j].weight)
                 break;
 
             heap[i] = heap[j];

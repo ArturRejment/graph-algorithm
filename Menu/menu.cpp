@@ -3,11 +3,12 @@
 #include <conio.h>
 #include "../Queue/priorityQueue.cpp"
 #include "../Graph/graph.cpp"
+#include "../DisjointSet/disjointSet.cpp"
 #include "../Dijkstra/dijkstra.cpp"
 #include "../Bellman-ford/bellman-ford.cpp"
-#include "../MST/mst.cpp"
 #include "../Kruskal/kruskal.cpp"
 #include "../Prim/prim.cpp"
+#include "../Graph/graphLogic.cpp"
 using namespace std;
 
 Graph *graph = new Graph();

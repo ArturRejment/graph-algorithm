@@ -83,6 +83,42 @@ int Graph::getEndingVertex(int edge)
     return -1;
 }
 
+void Graph::createMatrix(int verice)
+{
+    this->list = new ListElement *[verice];
+    this->matrix = new int *[verice];
+    this->n = verice;
+
+    for (int i = 0; i < verice; i++)
+    {
+        this->matrix[i] = new int[0];
+        this->list[i] = nullptr;
+    }
+}
+
+void Graph::addEdge(int vertex1, int vertex2, int weight)
+{
+    // Add Edge to the neighbourhood list
+    ListElement *temp;
+    temp = new ListElement;
+    temp->vertex = vertex2;
+    temp->weight = weight;
+    temp->next = list[vertex1];
+    list[vertex1] = temp;
+
+    // Add edge to the matrix
+    for (int i = 0; i < this->n; i++)
+    {
+        this->matrix[i] = (int *)realloc(this->matrix[i], (this->m + 1) * sizeof(int));
+        this->matrix[i][this->m] = 0;
+    }
+
+    this->matrix[vertex1][this->m] = weight;
+    this->matrix[vertex2][this->m] = -1 * weight;
+
+    this->m += 1;
+}
+
 void Graph::printMatrix()
 {
     int i, j;
@@ -145,61 +181,21 @@ void Graph::importGraphFromFile()
         cout << "[Graph] Cannot open data.txt!\n";
         return;
     }
-    file >> n >> m; // Get vertices and adges number
+    int vert, edges;
+    file >> vert >> edges; // Get number of vertice and edges
 
-    matrix = new int *[n];       // Create array of pointers for the matrix
-    list = new ListElement *[n]; // Create array of pointers for the list
+    this->createMatrix(vert);
 
-    for (i = 0; i < n; i++)
-    {
-        matrix[i] = new int[m]; // Create rows
-        list[i] = nullptr;
-    }
-
-    // Fill matrix with 0
-    for (i = 0; i < n; i++)
-        for (j = 0; j < m; j++)
-            matrix[i][j] = 0;
-
-    ListElement *temp;
     // Read consecutive edges
-    for (i = 0; i < m; i++)
+    while (!file.eof())
     {
         file >> vert1 >> vert2 >> weight; // Read starting vertex, ending vertex and weight of the edge
+        cout << vert1 << " " << vert2 << " " << weight << endl;
 
-        matrix[vert1][i] = weight;  // Starting vertex
-        matrix[vert2][i] = -weight; // Ending vertex
-
-        temp = new ListElement;
-        temp->vertex = vert2;
-        temp->weight = weight;
-        temp->next = list[vert1];
-        list[vert1] = temp;
+        this->addEdge(vert1, vert2, weight);
+        cout << "Added" << endl;
     }
     cout << "Structure filled with success!\n";
 
     file.close();
-}
-
-void Graph::fillGraphWithRandomData(int vertices, int density)
-{
-    int edges = (int)((float)(((density / 100) * vertices * (vertices - 1)) / 2));
-    DisjointSet set(vertices);
-    Edge edge;
-    int starting, ending;
-    srand(time(NULL));
-
-    for (int i = 0; i < vertices; i++)
-        set.makeSet(i);
-
-    while (!set.isAllOneSet())
-    {
-        // Generate starting and ending vertex as long, as they values are the same
-        // and they belongs to the same sets
-        do
-        {
-            starting = rand() % vertices;
-            ending = rand() % vertices;
-        } while ((starting == ending) || (set.findSet(starting) == set.findSet(ending)));
-    }
 }

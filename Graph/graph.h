@@ -30,4 +30,6 @@ public:
     void printGraph();                      // Prints both list and matrix
     void importGraphFromFile();             // Imtorts data from the file into the graph
     void fillGraphWithRandomData(int, int); // Fills graph with random data
+    void createMatrix(int);                 // Creates starting matrix
+    void addEdge(int, int, int);            // Adds an edge to the graph
 };
