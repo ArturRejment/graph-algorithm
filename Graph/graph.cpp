@@ -96,6 +96,15 @@ void Graph::createMatrix(int verice)
     }
 }
 
+bool Graph::checkEdge(int vert1, int vert2)
+{
+    for (int i = 0; i < m; i++)
+        if (matrix[vert1][i] > 0 && matrix[vert2][i] != 0)
+            return true; // Edge already exists
+
+    return false; // There is no edge (vert1, vert2) in the graph
+}
+
 void Graph::addEdge(int vertex1, int vertex2, int weight)
 {
     // Add Edge to the neighbourhood list

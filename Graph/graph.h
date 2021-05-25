@@ -32,4 +32,5 @@ public:
     void fillGraphWithRandomData(int, int); // Fills graph with random data
     void createMatrix(int);                 // Creates starting matrix
     void addEdge(int, int, int);            // Adds an edge to the graph
+    bool checkEdge(int, int);               // Checks if given edge already exists
 };

@@ -12,10 +12,11 @@
 using namespace std;
 
 Graph *graph = new Graph();
-int vert;
 
 void testingMenu()
 {
+    int vert;
+    int dens;
     char choice;
     do
     {
@@ -35,6 +36,14 @@ void testingMenu()
         case '1':
             system("cls");
             graph->importGraphFromFile();
+            break;
+        case '2':
+            system("cls");
+            cout << "Enter the number of verice: ";
+            cin >> vert;
+            cout << "Enter the dencity of graph: ";
+            cin >> dens;
+            fillGraphWithRandomData(graph, vert, dens);
             break;
         case '3':
             system("cls");

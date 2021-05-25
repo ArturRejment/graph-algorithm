@@ -48,11 +48,11 @@ void DisjointSet::unionSets(Edge edge)
 
 bool DisjointSet::isAllOneSet()
 {
-    int mainParent = this->set[0].up;
+    int mainParent = findSet(0);
     int i;
 
     for (i = 1; i < this->setSize; i++)
-        if (mainParent != this->set[i].up)
+        if (mainParent != findSet(i))
             return false;
 
     return true;
