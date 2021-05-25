@@ -23,10 +23,11 @@ public:
     ListElement **getList();    // Returns neighbour list
 
     // Others
-    Graph();                    // Creates an epty graph
-    ~Graph();                   // Deletes and graph
-    void printMatrix();         // Prints incidence matrix of the graph
-    void printList();           // Prints heighbour list of the graph
-    void printGraph();          // Prints both list and matrix
-    void importGraphFromFile(); // Imtorts data from the file into the graph
+    Graph();                                // Creates an epty graph
+    ~Graph();                               // Deletes and graph
+    void printMatrix();                     // Prints incidence matrix of the graph
+    void printList();                       // Prints heighbour list of the graph
+    void printGraph();                      // Prints both list and matrix
+    void importGraphFromFile();             // Imtorts data from the file into the graph
+    void fillGraphWithRandomData(int, int); // Fills graph with random data
 };

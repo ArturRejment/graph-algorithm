@@ -5,6 +5,7 @@ using namespace std;
 DisjointSet::DisjointSet(int n)
 {
     set = new SetNode[n];
+    setSize = n;
 }
 
 DisjointSet::~DisjointSet()
@@ -43,6 +44,18 @@ void DisjointSet::unionSets(Edge edge)
                 set[v].rank++;
         }
     }
+}
+
+bool DisjointSet::isAllOneSet()
+{
+    int mainParent = this->set[0].up;
+    int i;
+
+    for (i = 1; i < this->setSize; i++)
+        if (mainParent != this->set[i].up)
+            return false;
+
+    return true;
 }
 
 MST::MST(int n)
