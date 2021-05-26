@@ -7,7 +7,7 @@ struct ListElement
 
 class Graph
 {
-private:
+protected:
     int n;              // Number of vertices
     int m;              // Number of edges
     int **matrix;       // Incidence matrix
@@ -24,14 +24,14 @@ public:
     ListElement **getList();    // Returns neighbour list
 
     // Others
-    Graph();                                // Creates an epty graph
-    ~Graph();                               // Deletes and graph
-    void printMatrix();                     // Prints incidence matrix of the graph
-    void printList();                       // Prints heighbour list of the graph
-    void printGraph();                      // Prints both list and matrix
-    void importGraphFromFile();             // Imtorts data from the file into the graph
-    void fillGraphWithRandomData(int, int); // Fills graph with random data
-    void createMatrix(int);                 // Creates starting matrix
-    void addEdge(int, int, int);            // Adds an edge to the graph
-    bool checkEdge(int, int);               // Checks if given edge already exists
+    Graph();                                 // Creates an epty graph
+    ~Graph();                                // Deletes and graph
+    void printMatrix();                      // Prints incidence matrix of the graph
+    void printList();                        // Prints heighbour list of the graph
+    void printGraph();                       // Prints both list and matrix
+    void importGraphFromFile();              // Imtorts data from the file into the graph
+    void fillGraphWithRandomData(int, int);  // Fills graph with random data
+    void createMatrix(int);                  // Creates starting matrix
+    virtual void addEdge(int, int, int) = 0; // Adds an edge to the graph
+    bool checkEdge(int, int);                // Checks if given edge already exists
 };

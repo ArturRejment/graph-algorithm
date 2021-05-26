@@ -2,16 +2,18 @@
 #include <cstdlib>
 #include <conio.h>
 #include "../Queue/priorityQueue.cpp"
-#include "../Graph/graph.cpp"
+#include "../Graph/graphClass.cpp"
+#include "../Graph/directedGraph.cpp"
+// #include "../Graph/graphClass.cpp"
 #include "../DisjointSet/disjointSet.cpp"
 #include "../Dijkstra/dijkstra.cpp"
 #include "../Bellman-ford/bellman-ford.cpp"
-#include "../Kruskal/kruskal.cpp"
-#include "../Prim/prim.cpp"
+// #include "../Kruskal/kruskal.cpp"
+// #include "../Prim/prim.cpp"
 #include "../Graph/graphLogic.cpp"
 using namespace std;
 
-Graph *graph = new Graph();
+DirectedGraph *directedGraph = new DirectedGraph();
 
 void testingMenu()
 {
@@ -35,7 +37,7 @@ void testingMenu()
         {
         case '1':
             system("cls");
-            graph->importGraphFromFile();
+            directedGraph->importGraphFromFile();
             break;
         case '2':
             system("cls");
@@ -43,35 +45,35 @@ void testingMenu()
             cin >> vert;
             cout << "Enter the dencity of graph: ";
             cin >> dens;
-            fillGraphWithRandomData(graph, vert, dens);
+            fillGraphWithRandomData(*directedGraph, vert, dens);
             break;
         case '3':
             system("cls");
-            graph->printGraph();
+            directedGraph->printGraph();
             break;
         case '4':
             system("cls");
             cout << "Enter the starting vertex: ";
             cin >> vert;
-            dijkstraAlgoList(graph, vert);
-            dijkstraAlgoMatrix(graph, vert);
+            dijkstraAlgoList(*directedGraph, vert);
+            dijkstraAlgoMatrix(*directedGraph, vert);
             break;
         case '5':
             system("cls");
             cout << "Enter the starting vertex: ";
             cin >> vert;
-            bellmanFord(graph, vert, true);  // Bellman-ford using neighbor List
-            bellmanFord(graph, vert, false); // Bellman-ford using matrix
+            bellmanFord(*directedGraph, vert, true);  // Bellman-ford using neighbor List
+            bellmanFord(*directedGraph, vert, false); // Bellman-ford using matrix
             break;
-        case '6':
-            system("cls");
-            kruskalAlgoList(graph);
-            kruskalAlgoMatrix(graph);
-            break;
-        case '7':
-            system("cls");
-            primAlgoList(graph);
-            primAlgoMatrix(graph);
+            // case '6':
+            //     system("cls");
+            //     kruskalAlgoList(graph);
+            //     kruskalAlgoMatrix(graph);
+            //     break;
+            // case '7':
+            //     system("cls");
+            //     primAlgoList(graph);
+            //     primAlgoMatrix(graph);
             break;
         case '8':
             return;

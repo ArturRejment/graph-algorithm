@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-#include "graph.h"
+#include "graphClass.h"
 using namespace std;
 
 Graph::Graph()
@@ -106,37 +106,6 @@ bool Graph::checkEdge(int vert1, int vert2)
     return false; // There is no edge (vert1, vert2) in the graph
 }
 
-void Graph::addEdge(int vertex1, int vertex2, int weight)
-{
-    // Add Edge to the neighbourhood list
-    ListElement *temp;
-    temp = new ListElement;
-    temp->vertex = vertex2;
-    temp->weight = weight;
-    temp->next = list[vertex1];
-    list[vertex1] = temp;
-
-    ListElement *temp2;
-    temp2 = new ListElement;
-    temp2->vertex = vertex1;
-    temp2->weight = weight;
-    temp2->next = list[vertex2];
-    list[vertex2] = temp2;
-
-    // Add edge to the matrix
-    for (int i = 0; i < this->n; i++)
-    {
-        this->matrix[i] = (int *)realloc(this->matrix[i], (this->m + 1) * sizeof(int));
-        this->matrix[i][this->m] = 0;
-    }
-
-    this->matrix[vertex1][this->m] = weight;
-    this->matrix[vertex2][this->m] = -1 * weight;
-
-    this->weight += weight;
-    this->m += 1;
-}
-
 void Graph::printMatrix()
 {
     int i, j;
@@ -211,7 +180,6 @@ void Graph::importGraphFromFile()
         cout << vert1 << " " << vert2 << " " << weight << endl;
 
         this->addEdge(vert1, vert2, weight);
-        cout << "Added" << endl;
     }
     cout << "Structure filled with success!\n";
 

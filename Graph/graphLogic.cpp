@@ -1,4 +1,4 @@
-void fillGraphWithRandomData(Graph *&graph, int vertices, int density)
+void fillGraphWithRandomData(Graph &graph, int vertices, int density)
 {
     int edges = (int)((float)(((density / 100) * vertices * (vertices - 1)) / 2));
     DisjointSet set(vertices);
@@ -6,7 +6,7 @@ void fillGraphWithRandomData(Graph *&graph, int vertices, int density)
     int starting, ending, numberOfAddedEdges = 0;
     srand(time(NULL));
 
-    graph->createMatrix(vertices);
+    graph.createMatrix(vertices);
 
     for (int i = 0; i < vertices; i++)
         set.makeSet(i);
@@ -24,7 +24,7 @@ void fillGraphWithRandomData(Graph *&graph, int vertices, int density)
         edge.vert1 = starting;
         edge.vert2 = ending;
         edge.weight = rand() % (edges + 50) + 1;
-        graph->addEdge(edge.vert1, edge.vert2, edge.weight);
+        graph.addEdge(edge.vert1, edge.vert2, edge.weight);
 
         numberOfAddedEdges++;
         set.unionSets(edge);
@@ -36,12 +36,12 @@ void fillGraphWithRandomData(Graph *&graph, int vertices, int density)
         {
             starting = rand() % vertices;
             ending = rand() % vertices;
-        } while (starting == ending || graph->checkEdge(starting, ending));
+        } while (starting == ending || graph.checkEdge(starting, ending));
 
         edge.vert1 = starting;
         edge.vert2 = ending;
         edge.weight = rand() % (edges + 50) + 1;
-        graph->addEdge(edge.vert1, edge.vert2, edge.weight);
+        graph.addEdge(edge.vert1, edge.vert2, edge.weight);
         numberOfAddedEdges++;
     }
 }

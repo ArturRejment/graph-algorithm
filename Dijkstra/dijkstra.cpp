@@ -1,12 +1,12 @@
 const int MAXVALUE = 2147483647; // Const represents infinity
 using namespace std;
 
-void dijkstraAlgoList(Graph *&graph, int startingVertex)
+void dijkstraAlgoList(Graph &graph, int startingVertex)
 {
     // Useful variables
-    int n = graph->getVertices();
-    int m = graph->getEdges();
-    ListElement **neighbourhoodList = graph->getList();
+    int n = graph.getVertices();
+    int m = graph.getEdges();
+    ListElement **neighbourhoodList = graph.getList();
 
     // Required arrays
     int *weightTable = new int[n];
@@ -57,12 +57,12 @@ void dijkstraAlgoList(Graph *&graph, int startingVertex)
     }
 }
 
-void dijkstraAlgoMatrix(Graph *&graph, int startingVertex)
+void dijkstraAlgoMatrix(Graph &graph, int startingVertex)
 {
     // Useful variables
-    int n = graph->getVertices();
-    int m = graph->getEdges();
-    int **matrix = graph->getMatrix();
+    int n = graph.getVertices();
+    int m = graph.getEdges();
+    int **matrix = graph.getMatrix();
 
     // Required arrays
     int *weightTable = new int[n];
@@ -97,10 +97,10 @@ void dijkstraAlgoMatrix(Graph *&graph, int startingVertex)
         // Modify all the minWeightPosition neighours that are not visited
         for (int j = 0; j < m; j++)
         {
-            if (matrix[minWeightPosition][j] > 0 && !isVisited[graph->getEndingVertex(j)] && weightTable[graph->getEndingVertex(j)] > weightTable[minWeightPosition] + matrix[minWeightPosition][j])
+            if (matrix[minWeightPosition][j] > 0 && !isVisited[graph.getEndingVertex(j)] && weightTable[graph.getEndingVertex(j)] > weightTable[minWeightPosition] + matrix[minWeightPosition][j])
             {
-                weightTable[graph->getEndingVertex(j)] = weightTable[minWeightPosition] + matrix[minWeightPosition][j];
-                successorsList[graph->getEndingVertex(j)] = minWeightPosition;
+                weightTable[graph.getEndingVertex(j)] = weightTable[minWeightPosition] + matrix[minWeightPosition][j];
+                successorsList[graph.getEndingVertex(j)] = minWeightPosition;
             }
         }
     }

@@ -40,7 +40,7 @@ bool shortestPathList(int vertex)
     return true;
 }
 
-bool shortestPathMatrix(int vertex, Graph *&graph)
+bool shortestPathMatrix(int vertex, Graph &graph)
 {
     int i, temp, j;
 
@@ -49,8 +49,8 @@ bool shortestPathMatrix(int vertex, Graph *&graph)
     {
         for (j = 0; j < m; j++)
         {
-            int starting = graph->getStartingVertex(j);
-            int ending = graph->getEndingVertex(j);
+            int starting = graph.getStartingVertex(j);
+            int ending = graph.getEndingVertex(j);
             if (weightTable[ending] > weightTable[starting] + matrix[starting][j] && weightTable[starting] != MAXVALUE)
             {
                 weightTable[ending] = weightTable[starting] + matrix[starting][j];
@@ -60,19 +60,19 @@ bool shortestPathMatrix(int vertex, Graph *&graph)
     }
 
     for (j = 0; j < m; j++)
-        if (weightTable[graph->getEndingVertex(j)] > weightTable[graph->getStartingVertex(j)] + matrix[graph->getStartingVertex(j)][j])
+        if (weightTable[graph.getEndingVertex(j)] > weightTable[graph.getStartingVertex(j)] + matrix[graph.getStartingVertex(j)][j])
             return false; // There is a negative cycle!
 
     return true;
 }
 
-void bellmanFord(Graph *&graph, int startingVertex, bool isList)
+void bellmanFord(Graph &graph, int startingVertex, bool isList)
 {
     // Useful variables
-    n = graph->getVertices();
-    m = graph->getEdges();
-    neighbourhoodList = graph->getList();
-    matrix = graph->getMatrix();
+    n = graph.getVertices();
+    m = graph.getEdges();
+    neighbourhoodList = graph.getList();
+    matrix = graph.getMatrix();
 
     // Required arrays
     weightTable = new long long[n];
