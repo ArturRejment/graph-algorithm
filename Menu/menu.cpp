@@ -65,8 +65,8 @@ void testingMenu()
             break;
         case '6':
             system("cls");
-            kruskalAlgoMatrix(graph);
             kruskalAlgoList(graph);
+            kruskalAlgoMatrix(graph);
             break;
         case '7':
             system("cls");
