@@ -70,8 +70,8 @@ void testingMenu()
             break;
         case '7':
             system("cls");
-            primAlgoMatrix(graph);
             primAlgoList(graph);
+            primAlgoMatrix(graph);
             break;
         case '8':
             return;

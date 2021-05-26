@@ -87,7 +87,7 @@ void kruskalAlgoList(Graph *&graph)
             edge = queue.front();
             queue.pop();
         } while (set.findSet(edge.vert1) == set.findSet(edge.vert2));
-        mst->addEdge(edge.vert1, edge.vert2, edge.vert2);
+        mst->addEdge(edge.vert1, edge.vert2, edge.weight);
         set.unionSets(edge);
     }
 

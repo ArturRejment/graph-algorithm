@@ -116,6 +116,13 @@ void Graph::addEdge(int vertex1, int vertex2, int weight)
     temp->next = list[vertex1];
     list[vertex1] = temp;
 
+    ListElement *temp2;
+    temp2 = new ListElement;
+    temp2->vertex = vertex1;
+    temp2->weight = weight;
+    temp2->next = list[vertex2];
+    list[vertex2] = temp2;
+
     // Add edge to the matrix
     for (int i = 0; i < this->n; i++)
     {

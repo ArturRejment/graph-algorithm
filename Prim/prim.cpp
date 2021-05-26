@@ -46,22 +46,25 @@ void primAlgoMatrix(Graph *&graph)
             queue.pop();
         } while (visited[edge.vert2]);
 
+        cout << edge.vert1 << " " << edge.vert2 << endl;
+
         mst->addEdge(edge.vert1, edge.vert2, edge.weight);
         visited[edge.vert2] = true;
         vertex = edge.vert2;
     }
-    mst->printList();
+    mst->printMatrix();
     delete[] visited;
 }
 
 void primAlgoList(Graph *&graph)
 {
+    graph->printGraph();
+    cout << "\n\n\n";
     int i, j, vertex;
     int n = graph->getVertices();
     int m = graph->getEdges();
     ListElement **neighbourhoodList = graph->getList();
     Edge edge;
-    ListElement *node;
     ListElement *temp;
 
     Queue queue(m);
@@ -77,22 +80,28 @@ void primAlgoList(Graph *&graph)
 
     for (i = 1; i < n; i++)
     {
-        for (node = neighbourhoodList[vertex]; node; node = node->next)
+        temp = neighbourhoodList[vertex];
+        while (temp)
         {
-            if (!visited[node->vertex])
+            if (!visited[temp->vertex])
             {
                 edge.vert1 = vertex;
-                edge.vert2 = node->vertex;
-                edge.weight = node->weight;
+                edge.vert2 = temp->vertex;
+                edge.weight = temp->weight;
                 queue.push(edge);
+                cout << edge.vert1 << " " << edge.vert2 << " " << edge.weight << "\n";
             }
+            temp = temp->next;
         }
+        cout << "\n";
 
         do
         {
             edge = queue.front();
             queue.pop();
         } while (visited[edge.vert2]);
+        cout << edge.vert1 << " " << edge.vert2;
+        cout << "\n";
 
         mst->addEdge(edge.vert1, edge.vert2, edge.weight);
         visited[edge.vert2] = true;
