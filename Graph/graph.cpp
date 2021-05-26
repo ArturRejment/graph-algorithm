@@ -10,6 +10,7 @@ Graph::Graph()
     this->m = 0;
     this->matrix = nullptr;
     this->list = nullptr;
+    this->weight = 0;
 }
 
 Graph::~Graph()
@@ -125,6 +126,7 @@ void Graph::addEdge(int vertex1, int vertex2, int weight)
     this->matrix[vertex1][this->m] = weight;
     this->matrix[vertex2][this->m] = -1 * weight;
 
+    this->weight += weight;
     this->m += 1;
 }
 
@@ -145,7 +147,7 @@ void Graph::printMatrix()
             cout << setw(6) << matrix[i][j];
         cout << "\n";
     }
-    cout << "\n\n";
+    cout << "\nWeight of the tree: " << this->weight << "\n\n";
 }
 
 void Graph::printList()
@@ -163,7 +165,7 @@ void Graph::printList()
         }
         cout << "\n";
     }
-    cout << "\n";
+    cout << "\nWeight of the tree: " << this->weight << "\n\n";
 }
 
 void Graph::printGraph()

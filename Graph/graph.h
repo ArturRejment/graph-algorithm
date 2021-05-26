@@ -12,6 +12,7 @@ private:
     int m;              // Number of edges
     int **matrix;       // Incidence matrix
     ListElement **list; // Neighbour list
+    int weight;         // The weight of Graph (sum of all edges weight)
 
 public:
     // Getters
