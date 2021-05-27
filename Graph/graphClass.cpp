@@ -154,7 +154,7 @@ void Graph::importGraphFromFile()
         return;
     }
     int vert, edges;
-    file >> vert >> edges; // Get number of vertice and edges
+    file >> edges >> vert; // Get number of vertice and edges
 
     this->createMatrix(vert);
 
@@ -162,7 +162,6 @@ void Graph::importGraphFromFile()
     while (!file.eof())
     {
         file >> vert1 >> vert2 >> weight; // Read starting vertex, ending vertex and weight of the edge
-        cout << vert1 << " " << vert2 << " " << weight << endl;
 
         this->addEdge(vert1, vert2, weight);
     }

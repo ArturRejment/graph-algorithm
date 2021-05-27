@@ -1,12 +1,15 @@
-void fillGraphWithRandomData(Graph &graph, int vertices, int density)
+void fillGraphWithRandomData(Graph &graph, Graph &undirectedGraph, int vertices, float density)
 {
-    int edges = (int)((float)(((density / 100) * vertices * (vertices - 1)) / 2));
+    int edges = ((float)(((density / 100) * vertices * (vertices - 1)) / 2));
+    cout << "Verice: " << vertices << "\nDensity: " << density;
+    cout << "\nEDGES: " << edges << endl;
     DisjointSet set(vertices);
     Edge edge;
     int starting, ending, numberOfAddedEdges = 0;
     srand(time(NULL));
 
     graph.createMatrix(vertices);
+    undirectedGraph.createMatrix(vertices);
 
     for (int i = 0; i < vertices; i++)
         set.makeSet(i);
@@ -25,6 +28,7 @@ void fillGraphWithRandomData(Graph &graph, int vertices, int density)
         edge.vert2 = ending;
         edge.weight = rand() % (edges + 50) + 1;
         graph.addEdge(edge.vert1, edge.vert2, edge.weight);
+        undirectedGraph.addEdge(edge.vert1, edge.vert2, edge.weight);
 
         numberOfAddedEdges++;
         set.unionSets(edge);
@@ -32,6 +36,7 @@ void fillGraphWithRandomData(Graph &graph, int vertices, int density)
 
     while (numberOfAddedEdges < edges)
     {
+        cout << "No przeca tu jestem no\n";
         do
         {
             starting = rand() % vertices;
@@ -42,6 +47,23 @@ void fillGraphWithRandomData(Graph &graph, int vertices, int density)
         edge.vert2 = ending;
         edge.weight = rand() % (edges + 50) + 1;
         graph.addEdge(edge.vert1, edge.vert2, edge.weight);
+        undirectedGraph.addEdge(edge.vert1, edge.vert2, edge.weight);
         numberOfAddedEdges++;
     }
+}
+
+void deleteGraph(DirectedGraph **graph1, UndirectedGraph **graph2)
+{
+    if ((*graph1)->getVertices() == 0 || (*graph2)->getVertices() == 0)
+    {
+        cout << "One of the graphs is aleredy empty!\n";
+        return;
+    }
+
+    delete *graph1;
+    *graph1 = new DirectedGraph();
+
+    delete *graph2;
+    *graph2 = new UndirectedGraph();
+    cout << "Graphs deleted successfully!\n";
 }

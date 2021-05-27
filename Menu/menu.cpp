@@ -9,7 +9,7 @@
 #include "../Dijkstra/dijkstra.cpp"
 #include "../Bellman-ford/bellman-ford.cpp"
 #include "../Kruskal/kruskal.cpp"
-// #include "../Prim/prim.cpp"
+#include "../Prim/prim.cpp"
 #include "../Graph/graphLogic.cpp"
 using namespace std;
 
@@ -19,7 +19,7 @@ UndirectedGraph *undirectedGraph = new UndirectedGraph();
 void testingMenu()
 {
     int vert;
-    int dens;
+    float dens;
     char choice;
     do
     {
@@ -31,7 +31,8 @@ void testingMenu()
         cout << "[5] Bellman-Ford Algorithm\n";
         cout << "[6] Kruskal Algorithm\n";
         cout << "[7] Prim Algorithm\n";
-        cout << "[8] Exit\n";
+        cout << "[8] Delete graphs\n";
+        cout << "[9] Exit\n";
 
         choice = getch();
         switch (choice)
@@ -47,7 +48,7 @@ void testingMenu()
             cin >> vert;
             cout << "Enter the dencity of graph: ";
             cin >> dens;
-            fillGraphWithRandomData(*directedGraph, vert, dens);
+            fillGraphWithRandomData(*directedGraph, *undirectedGraph, vert, dens);
             break;
         case '3':
             system("cls");
@@ -75,12 +76,16 @@ void testingMenu()
             kruskalAlgoMatrix(*undirectedGraph);
             kruskalAlgoList(*undirectedGraph);
             break;
-            // case '7':
-            //     system("cls");
-            //     primAlgoList(graph);
-            //     primAlgoMatrix(graph);
+        case '7':
+            system("cls");
+            primAlgoList(*undirectedGraph);
+            primAlgoMatrix(*undirectedGraph);
             break;
         case '8':
+            system("cls");
+            deleteGraph(&directedGraph, &undirectedGraph);
+            break;
+        case '9':
             return;
 
         default:
