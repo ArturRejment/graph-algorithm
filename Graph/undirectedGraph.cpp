@@ -1,6 +1,6 @@
-#include "directedGraph.h"
+#include "undirectedGraph.h"
 
-void DirectedGraph::addEdge(int vertex1, int vertex2, int weight)
+void UndirectedGraph::addEdge(int vertex1, int vertex2, int weight)
 {
     // Add Edge to the neighbourhood list
     ListElement *temp;
@@ -10,6 +10,13 @@ void DirectedGraph::addEdge(int vertex1, int vertex2, int weight)
     temp->next = list[vertex1];
     list[vertex1] = temp;
 
+    ListElement *temp2;
+    temp2 = new ListElement;
+    temp2->vertex = vertex1;
+    temp2->weight = weight;
+    temp2->next = list[vertex2];
+    list[vertex2] = temp;
+
     // Add edge to the matrix
     for (int i = 0; i < this->n; i++)
     {
@@ -18,23 +25,24 @@ void DirectedGraph::addEdge(int vertex1, int vertex2, int weight)
     }
 
     this->matrix[vertex1][this->m] = weight;
-    this->matrix[vertex2][this->m] = -1 * weight;
+    this->matrix[vertex2][this->m] = weight;
 
     this->weight += weight;
     this->m += 1;
 }
 
-int DirectedGraph::getEndingVertex(int edge, int pass = 0)
+int UndirectedGraph::getEndingVertex(int edge, int startingVertex)
 {
-    if (edge > m - 1)
+    if (edge > this->n - 1)
         return -1;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < this->n; i++)
     {
-        if (matrix[i][edge] < 0)
-        {
+        if (i == startingVertex)
+            continue;
+
+        if (this->matrix[i][edge] > 0)
             return i;
-        }
     }
     return -1;
 }

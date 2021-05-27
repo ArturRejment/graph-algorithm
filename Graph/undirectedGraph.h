@@ -1,4 +1,4 @@
-class DirectedGraph : public Graph
+class UndirectedGraph : public Graph
 {
 public:
     void addEdge(int, int, int);

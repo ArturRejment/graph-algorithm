@@ -69,21 +69,6 @@ int Graph::getStartingVertex(int edge)
     return -1;
 }
 
-int Graph::getEndingVertex(int edge)
-{
-    if (edge > m - 1)
-        return -1;
-
-    for (int i = 0; i < n; i++)
-    {
-        if (matrix[i][edge] < 0)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
 void Graph::createMatrix(int verice)
 {
     this->list = new ListElement *[verice];

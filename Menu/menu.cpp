@@ -4,7 +4,7 @@
 #include "../Queue/priorityQueue.cpp"
 #include "../Graph/graphClass.cpp"
 #include "../Graph/directedGraph.cpp"
-// #include "../Graph/graphClass.cpp"
+#include "../Graph/undirectedGraph.cpp"
 #include "../DisjointSet/disjointSet.cpp"
 #include "../Dijkstra/dijkstra.cpp"
 #include "../Bellman-ford/bellman-ford.cpp"
@@ -14,6 +14,7 @@
 using namespace std;
 
 DirectedGraph *directedGraph = new DirectedGraph();
+UndirectedGraph *undirectedGraph = new UndirectedGraph();
 
 void testingMenu()
 {
@@ -38,6 +39,7 @@ void testingMenu()
         case '1':
             system("cls");
             directedGraph->importGraphFromFile();
+            undirectedGraph->importGraphFromFile();
             break;
         case '2':
             system("cls");
@@ -49,7 +51,10 @@ void testingMenu()
             break;
         case '3':
             system("cls");
+            cout << "Directed Graph:\n";
             directedGraph->printGraph();
+            cout << "Undirected Graph: \n";
+            undirectedGraph->printGraph();
             break;
         case '4':
             system("cls");
