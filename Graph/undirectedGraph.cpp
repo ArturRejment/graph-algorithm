@@ -15,7 +15,7 @@ void UndirectedGraph::addEdge(int vertex1, int vertex2, int weight)
     temp2->vertex = vertex1;
     temp2->weight = weight;
     temp2->next = list[vertex2];
-    list[vertex2] = temp;
+    list[vertex2] = temp2;
 
     // Add edge to the matrix
     for (int i = 0; i < this->n; i++)
@@ -33,7 +33,7 @@ void UndirectedGraph::addEdge(int vertex1, int vertex2, int weight)
 
 int UndirectedGraph::getEndingVertex(int edge, int startingVertex)
 {
-    if (edge > this->n - 1)
+    if (edge > this->m - 1)
         return -1;
 
     for (int i = 0; i < this->n; i++)

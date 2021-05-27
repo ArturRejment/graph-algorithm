@@ -8,7 +8,7 @@
 #include "../DisjointSet/disjointSet.cpp"
 #include "../Dijkstra/dijkstra.cpp"
 #include "../Bellman-ford/bellman-ford.cpp"
-// #include "../Kruskal/kruskal.cpp"
+#include "../Kruskal/kruskal.cpp"
 // #include "../Prim/prim.cpp"
 #include "../Graph/graphLogic.cpp"
 using namespace std;
@@ -70,11 +70,11 @@ void testingMenu()
             bellmanFord(*directedGraph, vert, true);  // Bellman-ford using neighbor List
             bellmanFord(*directedGraph, vert, false); // Bellman-ford using matrix
             break;
-            // case '6':
-            //     system("cls");
-            //     kruskalAlgoList(graph);
-            //     kruskalAlgoMatrix(graph);
-            //     break;
+        case '6':
+            system("cls");
+            kruskalAlgoMatrix(*undirectedGraph);
+            kruskalAlgoList(*undirectedGraph);
+            break;
             // case '7':
             //     system("cls");
             //     primAlgoList(graph);

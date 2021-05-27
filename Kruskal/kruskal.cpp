@@ -1,15 +1,15 @@
-void kruskalAlgoMatrix(Graph *&graph)
+void kruskalAlgoMatrix(Graph &graph)
 {
     // Useful variables
     int i;
-    int n = graph->getVertices();
-    int m = graph->getEdges();
-    int **matrix = graph->getMatrix();
+    int n = graph.getVertices();
+    int m = graph.getEdges();
+    int **matrix = graph.getMatrix();
     Edge edge;
 
     DisjointSet set(n); // Disjoint sets structure
     Queue queue(2 * m); // Priority queue
-    Graph *mst = new Graph();
+    UndirectedGraph *mst = new UndirectedGraph();
     mst->createMatrix(n);
 
     for (i = 0; i < n; i++)
@@ -19,17 +19,10 @@ void kruskalAlgoMatrix(Graph *&graph)
     {
         for (int j = 0; j < m; j++)
         {
-            if (matrix[i][j] < 0)
+            if (matrix[i][j] > 0)
             {
                 edge.vert1 = i;
-                edge.vert2 = graph->getStartingVertex(j);
-                edge.weight = -matrix[i][j];
-                queue.push(edge);
-            }
-            else if (matrix[i][j] > 0)
-            {
-                edge.vert1 = i;
-                edge.vert2 = graph->getEndingVertex(j);
+                edge.vert2 = graph.getEndingVertex(j, i);
                 edge.weight = matrix[i][j];
                 queue.push(edge);
             }
@@ -49,19 +42,19 @@ void kruskalAlgoMatrix(Graph *&graph)
     mst->printMatrix();
 }
 
-void kruskalAlgoList(Graph *&graph)
+void kruskalAlgoList(UndirectedGraph &graph)
 {
     // Useful variables
     int i;
-    int n = graph->getVertices();
-    int m = graph->getEdges();
-    ListElement **neighbourhoodList = graph->getList();
+    int n = graph.getVertices();
+    int m = graph.getEdges();
+    ListElement **neighbourhoodList = graph.getList();
     ListElement *temp;
     Edge edge;
 
     DisjointSet set(n); // Disjoint sets structure
-    Queue queue(m);     // Priority queue
-    Graph *mst = new Graph();
+    Queue queue(2 * m); // Priority queue
+    UndirectedGraph *mst = new UndirectedGraph();
     mst->createMatrix(n);
 
     for (i = 0; i < n; i++)
