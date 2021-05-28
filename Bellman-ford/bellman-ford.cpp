@@ -90,21 +90,21 @@ void bellmanFord(Graph &graph, int startingVertex, bool isList)
 
     if (isList ? shortestPathList(startingVertex) : shortestPathMatrix(startingVertex, graph))
     {
-        int *S = new int[n]; // Make a simple stack
-        int stackPtr = 0;
+        // int *S = new int[n]; // Make a simple stack
+        // int stackPtr = 0;
 
-        for (int i = 0; i < n; i++)
-        {
-            cout << i << ": ";
-            for (int temp = i; temp != -1; temp = successorsList[temp])
-                S[stackPtr++] = temp;
+        // for (int i = 0; i < n; i++)
+        // {
+        //     cout << i << ": ";
+        //     for (int temp = i; temp != -1; temp = successorsList[temp])
+        //         S[stackPtr++] = temp;
 
-            while (stackPtr)
-                cout << S[--stackPtr] << " ";
+        //     while (stackPtr)
+        //         cout << S[--stackPtr] << " ";
 
-            cout << "$" << weightTable[i] << endl;
-        }
-        delete[] S;
+        //     cout << "$" << weightTable[i] << endl;
+        // }
+        // delete[] S;
     }
     else
     {

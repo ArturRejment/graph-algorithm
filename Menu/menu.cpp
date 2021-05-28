@@ -117,6 +117,18 @@ void experimentMenu()
             system("cls");
             dikstraExperiment(&directedGraph, &undirectedGraph);
             break;
+        case '2':
+            system("cls");
+            bellmanFordExperiment(&directedGraph, &undirectedGraph);
+            break;
+        case '3':
+            system("cls");
+            PrimExperiment(&directedGraph, &undirectedGraph);
+            break;
+        case '4':
+            system("cls");
+            KruskalExperiment(&directedGraph, &undirectedGraph);
+            break;
         case '5':
             return;
 

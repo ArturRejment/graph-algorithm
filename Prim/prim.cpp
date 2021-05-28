@@ -43,7 +43,7 @@ void primAlgoMatrix(Graph &graph)
         visited[edge.vert2] = true;
         vertex = edge.vert2;
     }
-    mst->printMatrix();
+    // mst->printMatrix();
     delete[] visited;
 }
 
@@ -93,6 +93,6 @@ void primAlgoList(Graph &graph)
         vertex = edge.vert2;
     }
 
-    mst->printList();
+    // mst->printList();
     delete[] visited;
 }

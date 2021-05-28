@@ -39,7 +39,7 @@ void kruskalAlgoMatrix(Graph &graph)
         mst->addEdge(edge.vert1, edge.vert2, edge.weight);
         set.unionSets(edge);
     }
-    mst->printMatrix();
+    // mst->printMatrix();
 }
 
 void kruskalAlgoList(UndirectedGraph &graph)
@@ -84,5 +84,5 @@ void kruskalAlgoList(UndirectedGraph &graph)
         set.unionSets(edge);
     }
 
-    mst->printList();
+    // mst->printList();
 }
