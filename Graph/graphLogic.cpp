@@ -1,15 +1,13 @@
-void fillGraphWithRandomData(Graph &graph, Graph &undirectedGraph, int vertices, float density)
+void fillGraphWithRandomData(DirectedGraph **directedGraph, UndirectedGraph **undirectedGraph, int vertices, float density)
 {
     int edges = ((float)(((density / 100) * vertices * (vertices - 1)) / 2));
-    cout << "Verice: " << vertices << "\nDensity: " << density;
-    cout << "\nEDGES: " << edges << endl;
     DisjointSet set(vertices);
     Edge edge;
     int starting, ending, numberOfAddedEdges = 0;
     srand(time(NULL));
 
-    graph.createMatrix(vertices);
-    undirectedGraph.createMatrix(vertices);
+    (*directedGraph)->createMatrix(vertices);
+    (*undirectedGraph)->createMatrix(vertices);
 
     for (int i = 0; i < vertices; i++)
         set.makeSet(i);
@@ -27,8 +25,8 @@ void fillGraphWithRandomData(Graph &graph, Graph &undirectedGraph, int vertices,
         edge.vert1 = starting;
         edge.vert2 = ending;
         edge.weight = rand() % (edges + 50) + 1;
-        graph.addEdge(edge.vert1, edge.vert2, edge.weight);
-        undirectedGraph.addEdge(edge.vert1, edge.vert2, edge.weight);
+        (*directedGraph)->addEdge(edge.vert1, edge.vert2, edge.weight);
+        (*undirectedGraph)->addEdge(edge.vert1, edge.vert2, edge.weight);
 
         numberOfAddedEdges++;
         set.unionSets(edge);
@@ -36,34 +34,41 @@ void fillGraphWithRandomData(Graph &graph, Graph &undirectedGraph, int vertices,
 
     while (numberOfAddedEdges < edges)
     {
-        cout << "No przeca tu jestem no\n";
         do
         {
             starting = rand() % vertices;
             ending = rand() % vertices;
-        } while (starting == ending || graph.checkEdge(starting, ending));
+        } while (starting == ending || (*directedGraph)->checkEdge(starting, ending));
 
         edge.vert1 = starting;
         edge.vert2 = ending;
         edge.weight = rand() % (edges + 50) + 1;
-        graph.addEdge(edge.vert1, edge.vert2, edge.weight);
-        undirectedGraph.addEdge(edge.vert1, edge.vert2, edge.weight);
+        (*directedGraph)->addEdge(edge.vert1, edge.vert2, edge.weight);
+        (*undirectedGraph)->addEdge(edge.vert1, edge.vert2, edge.weight);
         numberOfAddedEdges++;
     }
 }
 
-void deleteGraph(DirectedGraph **graph1, UndirectedGraph **graph2)
+void deleteDirectedGraph(DirectedGraph **graph1)
 {
-    if ((*graph1)->getVertices() == 0 || (*graph2)->getVertices() == 0)
+    if ((*graph1)->getVertices() == 0)
     {
-        cout << "One of the graphs is aleredy empty!\n";
+        cout << "Graph is aleredy empty!\n";
         return;
     }
 
     delete *graph1;
     *graph1 = new DirectedGraph();
+}
 
-    delete *graph2;
-    *graph2 = new UndirectedGraph();
-    cout << "Graphs deleted successfully!\n";
+void deleteUndirectedGraph(UndirectedGraph **graph1)
+{
+    if ((*graph1)->getVertices() == 0)
+    {
+        cout << "Graph is aleredy empty!\n";
+        return;
+    }
+
+    delete *graph1;
+    *graph1 = new UndirectedGraph();
 }

@@ -11,6 +11,8 @@
 #include "../Kruskal/kruskal.cpp"
 #include "../Prim/prim.cpp"
 #include "../Graph/graphLogic.cpp"
+#include "../Timer/timer.cpp"
+#include "./experiments.cpp"
 using namespace std;
 
 DirectedGraph *directedGraph = new DirectedGraph();
@@ -48,7 +50,7 @@ void testingMenu()
             cin >> vert;
             cout << "Enter the dencity of graph: ";
             cin >> dens;
-            fillGraphWithRandomData(*directedGraph, *undirectedGraph, vert, dens);
+            fillGraphWithRandomData(&directedGraph, &undirectedGraph, vert, dens);
             break;
         case '3':
             system("cls");
@@ -83,7 +85,8 @@ void testingMenu()
             break;
         case '8':
             system("cls");
-            deleteGraph(&directedGraph, &undirectedGraph);
+            deleteDirectedGraph(&directedGraph);
+            deleteUndirectedGraph(&undirectedGraph);
             break;
         case '9':
             return;
@@ -91,6 +94,36 @@ void testingMenu()
         default:
             break;
         }
+    } while (true);
+}
+
+void experimentMenu()
+{
+    char choice;
+    do 
+    {
+        
+        cout << "----------EXPERIMENT MENU----------\n";
+        cout << "[1] Experimnet on Diskra's algorithm\n";
+        cout << "[2] Experiment on Bellman-Ford's algorithm\n";
+        cout << "[3] Experiment on Prim's algorithm\n";
+        cout << "[4] Experiment on Kruskal's algorithm\n";
+        cout << "[5] Exit menu\n";
+
+        choice = getch();
+        switch (choice)
+        {
+        case '1':
+            system("cls");
+            dikstraExperiment(&directedGraph, &undirectedGraph);
+            break;
+        case '5':
+            return;
+
+        default:
+            break;
+        }
+
     } while (true);
 }
 
@@ -110,6 +143,8 @@ void selectMode()
         switch (choice)
         {
         case '1':
+            system("cls");
+            experimentMenu();
             break;
         case '2':
             system("cls");

@@ -1,7 +1,7 @@
 const int MAXVALUE = 2147483647; // Const represents infinity
 using namespace std;
 
-void dijkstraAlgoList(Graph &graph, int startingVertex)
+void dijkstraAlgoList(DirectedGraph &graph, int startingVertex)
 {
     // Useful variables
     int n = graph.getVertices();
@@ -49,15 +49,19 @@ void dijkstraAlgoList(Graph &graph, int startingVertex)
         }
     }
 
-    cout << "\n";
-    cout << "Shortest routes: \n";
-    for (i = 0; i < n; i++)
-    {
-        cout << i << ": " << weightTable[i] << "\n";
-    }
+    delete[] weightTable;
+    delete[] successorsList;
+    delete[] isVisited;
+
+    // cout << "\n";
+    // cout << "Shortest routes: \n";
+    // for (i = 0; i < n; i++)
+    // {
+    //     cout << i << ": " << weightTable[i] << "\n";
+    // }
 }
 
-void dijkstraAlgoMatrix(Graph &graph, int startingVertex)
+void dijkstraAlgoMatrix(DirectedGraph &graph, int startingVertex)
 {
     // Useful variables
     int n = graph.getVertices();
@@ -105,10 +109,14 @@ void dijkstraAlgoMatrix(Graph &graph, int startingVertex)
         }
     }
 
-    cout << "\n";
-    cout << "Shortest routes: \n";
-    for (i = 0; i < n; i++)
-    {
-        cout << i << ": " << weightTable[i] << "\n";
-    }
+    delete[] weightTable;
+    delete[] successorsList;
+    delete[] isVisited;
+
+    // cout << "\n";
+    // cout << "Shortest routes: \n";
+    // for (i = 0; i < n; i++)
+    // {
+    //     cout << i << ": " << weightTable[i] << "\n";
+    // }
 }
