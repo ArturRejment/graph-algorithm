@@ -63,25 +63,25 @@ void testingMenu()
             system("cls");
             cout << "Enter the starting vertex: ";
             cin >> vert;
-            dijkstraAlgoList(*directedGraph, vert);
-            dijkstraAlgoMatrix(*directedGraph, vert);
+            dijkstraAlgoList(*directedGraph, vert, true);
+            dijkstraAlgoMatrix(*directedGraph, vert, true);
             break;
         case '5':
             system("cls");
             cout << "Enter the starting vertex: ";
             cin >> vert;
-            bellmanFord(*directedGraph, vert, true);  // Bellman-ford using neighbor List
-            bellmanFord(*directedGraph, vert, false); // Bellman-ford using matrix
+            bellmanFord(*directedGraph, vert, true, true);  // Bellman-ford using neighbor List
+            bellmanFord(*directedGraph, vert, false, true); // Bellman-ford using matrix
             break;
         case '6':
             system("cls");
-            kruskalAlgoMatrix(*undirectedGraph);
-            kruskalAlgoList(*undirectedGraph);
+            kruskalAlgoMatrix(*undirectedGraph, true);
+            kruskalAlgoList(*undirectedGraph, true);
             break;
         case '7':
             system("cls");
-            primAlgoList(*undirectedGraph);
-            primAlgoMatrix(*undirectedGraph);
+            primAlgoMatrix(*undirectedGraph, true);
+            primAlgoList(*undirectedGraph, true);
             break;
         case '8':
             system("cls");

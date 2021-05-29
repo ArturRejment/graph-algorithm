@@ -1,4 +1,4 @@
-void kruskalAlgoMatrix(Graph &graph)
+void kruskalAlgoMatrix(Graph &graph, bool isTest=false)
 {
     // Useful variables
     int i;
@@ -39,10 +39,10 @@ void kruskalAlgoMatrix(Graph &graph)
         mst->addEdge(edge.vert1, edge.vert2, edge.weight);
         set.unionSets(edge);
     }
-    // mst->printMatrix();
+    if(isTest) mst->printMatrix();
 }
 
-void kruskalAlgoList(UndirectedGraph &graph)
+void kruskalAlgoList(UndirectedGraph &graph, bool isTest=false)
 {
     // Useful variables
     int i;
@@ -84,5 +84,5 @@ void kruskalAlgoList(UndirectedGraph &graph)
         set.unionSets(edge);
     }
 
-    // mst->printList();
+    if (isTest) mst->printList();
 }

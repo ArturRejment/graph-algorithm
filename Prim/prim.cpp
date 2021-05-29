@@ -1,4 +1,4 @@
-void primAlgoMatrix(Graph &graph)
+void primAlgoMatrix(Graph &graph, bool isTest=false)
 {
     int i, j, vertex;
     int n = graph.getVertices();
@@ -43,11 +43,11 @@ void primAlgoMatrix(Graph &graph)
         visited[edge.vert2] = true;
         vertex = edge.vert2;
     }
-    // mst->printMatrix();
+    if(isTest) mst->printMatrix();
     delete[] visited;
 }
 
-void primAlgoList(Graph &graph)
+void primAlgoList(Graph &graph, bool isTest=false)
 {
     int i, j, vertex;
     int n = graph.getVertices();
@@ -93,6 +93,6 @@ void primAlgoList(Graph &graph)
         vertex = edge.vert2;
     }
 
-    // mst->printList();
+    if(isTest) mst->printList();
     delete[] visited;
 }
