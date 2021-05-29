@@ -94,9 +94,11 @@ void bellmanFord(Graph &graph, int startingVertex, bool isList, bool isTest=fals
         {
             int *S = new int[n]; // Make a simple stack
             int stackPtr = 0;
-
+            cout << "\n";
+            cout << "Shortes routes: \n";
             for (int i = 0; i < n; i++)
             {
+                
                 cout << i << ": ";
                 for (int temp = i; temp != -1; temp = successorsList[temp])
                     S[stackPtr++] = temp;

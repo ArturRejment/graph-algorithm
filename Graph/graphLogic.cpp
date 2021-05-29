@@ -1,5 +1,34 @@
+void deleteDirectedGraph(DirectedGraph **graph1)
+{
+    if ((*graph1)->getVertices() == 0)
+    {
+        cout << "Graph is aleredy empty!\n";
+        return;
+    }
+
+    delete *graph1;
+    *graph1 = new DirectedGraph();
+}
+
+void deleteUndirectedGraph(UndirectedGraph **graph1)
+{
+    if ((*graph1)->getVertices() == 0)
+    {
+        cout << "Graph is aleredy empty!\n";
+        return;
+    }
+
+    delete *graph1;
+    *graph1 = new UndirectedGraph();
+}
+
 void fillGraphWithRandomData(DirectedGraph **directedGraph, UndirectedGraph **undirectedGraph, int vertices, float density)
 {
+    if((*directedGraph)->getVertices() != 0 || (*undirectedGraph)->getVertices() != 0)
+    {
+        deleteDirectedGraph(directedGraph);
+        deleteUndirectedGraph(undirectedGraph);
+    }
     int edges = ((float)(((density / 100) * vertices * (vertices - 1)) / 2));
     DisjointSet set(vertices);
     Edge edge;
@@ -38,7 +67,7 @@ void fillGraphWithRandomData(DirectedGraph **directedGraph, UndirectedGraph **un
         {
             starting = rand() % vertices;
             ending = rand() % vertices;
-        } while (starting == ending || (*directedGraph)->checkEdge(starting, ending));
+        } while (starting == ending || (*undirectedGraph)->checkEdge(starting, ending));
 
         edge.vert1 = starting;
         edge.vert2 = ending;
@@ -49,26 +78,3 @@ void fillGraphWithRandomData(DirectedGraph **directedGraph, UndirectedGraph **un
     }
 }
 
-void deleteDirectedGraph(DirectedGraph **graph1)
-{
-    if ((*graph1)->getVertices() == 0)
-    {
-        cout << "Graph is aleredy empty!\n";
-        return;
-    }
-
-    delete *graph1;
-    *graph1 = new DirectedGraph();
-}
-
-void deleteUndirectedGraph(UndirectedGraph **graph1)
-{
-    if ((*graph1)->getVertices() == 0)
-    {
-        cout << "Graph is aleredy empty!\n";
-        return;
-    }
-
-    delete *graph1;
-    *graph1 = new UndirectedGraph();
-}

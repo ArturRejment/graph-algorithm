@@ -49,9 +49,8 @@ void dijkstraAlgoList(DirectedGraph &graph, int startingVertex, bool isTest=fals
         }
     }
 
-    delete[] weightTable;
-    delete[] successorsList;
-    delete[] isVisited;
+    int *stack = new int[n];
+    int stackptr = 0;
 
     if (isTest)
     {
@@ -59,9 +58,21 @@ void dijkstraAlgoList(DirectedGraph &graph, int startingVertex, bool isTest=fals
         cout << "Shortest routes: \n";
         for (i = 0; i < n; i++)
         {
-            cout << i << ": " << weightTable[i] << "\n";
+            cout << i << ": ";
+            for (int j = i; j > -1; j = successorsList[j])
+                stack[stackptr++] = j;
+
+            while(stackptr)
+                cout << stack[--stackptr] << " ";
+
+            cout << "$" << weightTable[i] << "\n";
         }
     }
+
+    delete[] weightTable;
+    delete[] successorsList;
+    delete[] isVisited;
+    delete[] stack;
 }
 
 void dijkstraAlgoMatrix(DirectedGraph &graph, int startingVertex, bool isTest=false)
@@ -112,17 +123,34 @@ void dijkstraAlgoMatrix(DirectedGraph &graph, int startingVertex, bool isTest=fa
         }
     }
 
-    delete[] weightTable;
-    delete[] successorsList;
-    delete[] isVisited;
+    int *stack = new int[n];
+    int stackptr = 0;
 
     if(isTest)
     {
-        cout << "\n";
-        cout << "Shortest routes: \n";
-        for (i = 0; i < n; i++)
+        int *stack = new int[n];
+        int stackptr = 0;
+
+        if (isTest)
         {
-            cout << i << ": " << weightTable[i] << "\n";
+            cout << "\n";
+            cout << "Shortest routes: \n";
+            for (i = 0; i < n; i++)
+            {
+                cout << i << ": ";
+                for (int j = i; j > -1; j = successorsList[j])
+                    stack[stackptr++] = j;
+
+                while (stackptr)
+                    cout << stack[--stackptr] << " ";
+
+                cout << "$" << weightTable[i] << "\n";
+            }
         }
     }
+
+    delete[] weightTable;
+    delete[] successorsList;
+    delete[] isVisited;
+    delete[] stack;
 }
