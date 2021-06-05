@@ -1,4 +1,4 @@
-float NANOSEC = 1000000000.0f;
+float NANOSEC = 1000000.0f;
 
 void dikstraExperiment(DirectedGraph **directedGraph, UndirectedGraph **undirectedGraph)
 {
