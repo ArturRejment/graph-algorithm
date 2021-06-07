@@ -31,8 +31,8 @@ void dikstraExperiment(DirectedGraph **directedGraph, UndirectedGraph **undirect
         deleteUndirectedGraph(undirectedGraph);
         deleteDirectedGraph(directedGraph);
     }
-    cout << "Dikstra's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ns\n";
-    cout << "Dikstra's algorithm for list took on average: " << listTime / numberOfTests << "ns\n";
+    cout << "Dikstra's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ms\n";
+    cout << "Dikstra's algorithm for list took on average: " << listTime / numberOfTests << "ms\n";
 }
 
 
@@ -67,8 +67,8 @@ void bellmanFordExperiment(DirectedGraph **directedGraph, UndirectedGraph **undi
         deleteUndirectedGraph(undirectedGraph);
         deleteDirectedGraph(directedGraph);
     }
-    cout << "Bellman-Ford's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ns\n";
-    cout << "Bellman-Ford's algorithm for list took on average: " << listTime / numberOfTests << "ns\n";
+    cout << "Bellman-Ford's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ms\n";
+    cout << "Bellman-Ford's algorithm for list took on average: " << listTime / numberOfTests << "ms\n";
 }
 
 
@@ -104,8 +104,8 @@ void PrimExperiment(DirectedGraph **directedGraph, UndirectedGraph **undirectedG
         deleteUndirectedGraph(undirectedGraph);
         deleteDirectedGraph(directedGraph);
     }
-    cout << "Prim's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ns\n";
-    cout << "Prim's algorithm for list took on average: " << listTime / numberOfTests << "ns\n";
+    cout << "Prim's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ms\n";
+    cout << "Prim's algorithm for list took on average: " << listTime / numberOfTests << "ms\n";
 }
 
 
@@ -140,6 +140,6 @@ void KruskalExperiment(DirectedGraph **directedGraph, UndirectedGraph **undirect
         deleteUndirectedGraph(undirectedGraph);
         deleteDirectedGraph(directedGraph);
     }
-    cout << "Kruskal's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ns\n";
-    cout << "Kruskal's algorithm for list took on average: " << listTime / numberOfTests << "ns\n";
+    cout << "Kruskal's algorithm for incidence matrix took on average: " << matrixTime / numberOfTests << "ms\n";
+    cout << "Kruskal's algorithm for list took on average: " << listTime / numberOfTests << "ms\n";
 }
