@@ -100,13 +100,22 @@ void bellmanFord(Graph &graph, int startingVertex, bool isList, bool isTest=fals
             {
                 
                 cout << i << ": ";
+
+                if (weightTable[i] == MAXVALUE || weightTable[i] < 0)
+                {
+                    cout << "$"
+                         << "no path\n";
+                    continue;
+                }
+
                 for (int temp = i; temp != -1; temp = successorsList[temp])
                     S[stackPtr++] = temp;
 
                 while (stackPtr)
                     cout << S[--stackPtr] << " ";
 
-                cout << "$" << weightTable[i] << endl;
+                cout << "$" << weightTable[i] << "\n";
+                
             }
             delete[] S;
         }

@@ -59,13 +59,26 @@ void dijkstraAlgoList(DirectedGraph &graph, int startingVertex, bool isTest=fals
         for (i = 0; i < n; i++)
         {
             cout << i << ": ";
+
+            if (weightTable[i] == MAXVALUE || weightTable[i] < 0)
+            {
+                cout << "$"
+                     << "no path\n";
+                continue;
+            }
+
             for (int j = i; j > -1; j = successorsList[j])
                 stack[stackptr++] = j;
 
+            
             while(stackptr)
                 cout << stack[--stackptr] << " ";
 
+            
+        
+            
             cout << "$" << weightTable[i] << "\n";
+        
         }
     }
 
@@ -138,13 +151,24 @@ void dijkstraAlgoMatrix(DirectedGraph &graph, int startingVertex, bool isTest=fa
             for (i = 0; i < n; i++)
             {
                 cout << i << ": ";
+
+                if(weightTable[i] == MAXVALUE || weightTable[i] < 0)
+                {
+                    cout << "$"
+                         << "no path\n";
+                    continue;
+                }
+
                 for (int j = i; j > -1; j = successorsList[j])
                     stack[stackptr++] = j;
+
+                
 
                 while (stackptr)
                     cout << stack[--stackptr] << " ";
 
                 cout << "$" << weightTable[i] << "\n";
+
             }
         }
     }
